@@ -1,5 +1,8 @@
 	.global _Z10sumsquaresii
 	.global _Z3dotPiS_i
+	.global	_Z8doubleitPii
+	.global _Z3sumPKci
+	.global _Z9fibonaccii
 	
 _Z10sumsquaresii:
 	@r0 = the first integer
@@ -34,5 +37,59 @@ _Z3dotPiS_i:
 	mov	r0, r6
 	pop	{r4, r5, r6, r7}
 	bx	lr
+
+_Z8doubleitPii:
+	@r0 = the address of the array
+	@r1 = the length of the array
+
+3:
+	ldr	r2, [r0]
+	add	r2, r2	@having a problem with the mul command
+	str	r2, [r0], #4
+	sub	r1, #1
+	cmp	r1, #0
+	bgt	3b
+	bx	lr
+
+_Z3sumPKci:
+	@r0 = address of the first letter in the string
+	@r1 = the length of the string
+	mov	r3, #0
 	
+4:	
+	ldrb	r2, [r0]
+	add	r3, r2
+	add	r0, #1
+	sub	r1, #1
+	cmp	r1, #0
+	bgt	4b
+	mov	r0, r3
+	bx	lr
+
+_Z9fibonaccii:
+	@r0 = the current position
+	mov	r1, #0 @first number in sequence
+	mov	r2, #1 @second number in sequence
+	cmp	r0, #0
+	beq	zero
+	cmp	r0, #1
+	beq	one
 	
+5:
+	add	r3, r1, r2
+	mov	r1, r2
+	mov	r2, r3
+	sub	r0, #1
+	cmp	r0, #1
+	bgt	5b
+	mov 	r0, r3
+	bx	lr
+	
+
+zero:
+	mov 	r0, #0
+	bx	lr
+
+one:
+	mov 	r0, #1
+	bx	lr
