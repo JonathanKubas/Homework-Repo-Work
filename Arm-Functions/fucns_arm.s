@@ -3,6 +3,7 @@
 	.global	_Z8doubleitPii
 	.global _Z3sumPKci
 	.global _Z9fibonaccii
+	.global _Z9maxnumberPii
 	
 _Z10sumsquaresii:
 	@r0 = the first integer
@@ -93,3 +94,33 @@ zero:
 one:
 	mov 	r0, #1
 	bx	lr
+
+	
+_Z9maxnumberPii:
+	@r0 = the address of the array
+	@r1 = the length of the array
+	mov r3, #0
+
+6:
+	ldr 	r2, [r0], #4
+	cmp	r2, r2
+	bgt	max
+	b	check
+
+max:
+	mov	r3, r2
+	sub	r1, #1
+	cmp	r1, #0
+	bgt	6b
+	b	out
+
+check:
+	sub	r1, #1
+	cmp	r1, #0
+	bgt	1b
+	b	out
+
+out:
+	mov	r0, r3
+	bx	lr
+	

@@ -17,6 +17,9 @@ int sum(const char c[], int length1);
 //Fibonacci Sequance
 int fibonacci(int number);
 
+//Maximum number in array
+int maxnumber(int array1[], int length2);
+
 int main() {
   //Output for sum of squares 
   int integer1 = 0;
@@ -49,7 +52,7 @@ int main() {
     }    
   }
 
-  //Output for Sum of Character Matrix
+  //Output for Sum of Characters
   const char d[]= "Seven";
   int e = 5;
   cout << "The numerical sum of the word 'Seven' is: " << sum(d, e) << endl;
@@ -67,4 +70,8 @@ int main() {
       cout << fibonacci(j) << endl;
     }
   }
+
+  //Output for maximun number of an array
+  int arrayx[]= {1,6,3,2,1,8};
+  cout << "The maximum number in this array is: " << maxnumber(arrayx, 6) << endl;
 }
